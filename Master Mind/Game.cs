@@ -88,6 +88,8 @@ namespace Master_Mind
             {
                 game.AddRow(Render.GetColorInput());
 
+                Console.Clear();
+
                 Render.RenderBoard(game);
 
                 Console.ReadLine();
