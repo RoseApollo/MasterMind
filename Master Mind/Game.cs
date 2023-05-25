@@ -54,6 +54,42 @@ namespace Master_Mind
 
                 this.go++;
             }
+
+            public int[] ContainsCalcIHateThis(int row)
+            {
+                int[] retVal = new int[4];
+                int[] seqCache = new int[4];
+
+                this.sequence.CopyTo(seqCache, 0);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (this.board[row, i] == seqCache[i])
+                    {
+                        seqCache[i] = -1;
+
+                        retVal[i] = 1;
+                    }
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (retVal[i] == 1)
+                        continue;
+
+                    for (int s = 0; s < 4; s++)
+                    {
+                        if (this.board[row, i] == seqCache[s])
+                        {
+                            seqCache[s] = -1;
+
+                            retVal[i] = 2;
+                        }
+                    }
+                }
+
+                return retVal;
+            }
         }
 
         public static void Play()

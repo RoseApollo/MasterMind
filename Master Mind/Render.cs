@@ -10,7 +10,7 @@ namespace Master_Mind
     {
         public static void RenderBoard(Game.GameData board)
         {
-            for (int x = 0; x < 12; x++)
+            for (int x = 0; x < (board.go); x++)
             {
                 for (int y = 0; y < 4; y++)
                 {
@@ -22,38 +22,39 @@ namespace Master_Mind
 
                 Console.Write("  ");
 
+                int[] checks = board.ContainsCalcIHateThis(x);
+
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.Write(" ");
+
                 for (int y = 0; y < 4; y++)
                 {
-                    if (board.board[x, y] == board.sequence[y])
+                    switch (checks[y])
                     {
-                        Console.BackgroundColor = ConsoleColor.DarkGreen;
-                    }
-                    else if (board.sequence.Contains(board.board[x,y]))
-                    {
-                        Console.BackgroundColor = ConsoleColor.DarkRed;
-                    }
-                    else
-                    {
-                        Console.BackgroundColor = ConsoleColor.Black;
+                        case 1:
+                            Console.BackgroundColor = ConsoleColor.DarkGreen;
+                            break;
+
+                        case 2:
+                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                            break;
+
+                        case 0:
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            break;
                     }
 
                     Console.Write(" ");
                 }
 
-                Console.BackgroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.Write(" ");
 
+                Console.BackgroundColor = ConsoleColor.Black;
                 Console.WriteLine("\n");
             }
 
             Console.WriteLine("\n");
-
-            for (int y = 0; y < 4; y++)
-            {
-                Console.BackgroundColor = Values.colors[board.sequence[y]];
-                Console.Write(" ");
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.Write(" ");
-            }
         }
 
         public static int[] GetColorInput()
