@@ -55,6 +55,14 @@ namespace Master_Mind
             }
 
             Console.WriteLine("\n");
+
+            for (int y = 0; y < 4; y++)
+            {
+                Console.BackgroundColor = Values.colors[board.sequence[y]];
+                Console.Write(" ");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.Write(" ");
+            }
         }
 
         public static int[] GetColorInput()
