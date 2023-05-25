@@ -24,7 +24,7 @@ namespace Master_Mind
 
                 int[] checks = board.ContainsCalcIHateThis(x);
 
-                Console.BackgroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Gray;
                 Console.Write(" ");
 
                 for (int y = 0; y < 4; y++)
@@ -47,7 +47,7 @@ namespace Master_Mind
                     Console.Write(" ");
                 }
 
-                Console.BackgroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Gray;
                 Console.Write(" ");
 
                 Console.BackgroundColor = ConsoleColor.Black;
