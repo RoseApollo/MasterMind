@@ -8,7 +8,7 @@ namespace Master_Mind
 {
     public class Render
     {
-        public static void RenderBoard(Game.GameData board)
+        public static void RenderBoard(Game.GameData board, bool showAns = false)
         {
             for (int x = 0; x < (board.go); x++)
             {
@@ -56,12 +56,15 @@ namespace Master_Mind
 
             Console.WriteLine("\n");
 
-            for (int y = 0; y < 4; y++)
+            if (showAns)
             {
-                Console.BackgroundColor = Values.colors[board.sequence[y]];
-                Console.Write(" ");
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.Write(" ");
+                for (int y = 0; y < 4; y++)
+                {
+                    Console.BackgroundColor = Values.colors[board.sequence[y]];
+                    Console.Write(" ");
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.Write(" ");
+                }
             }
         }
 

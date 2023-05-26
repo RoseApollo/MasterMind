@@ -100,46 +100,41 @@ namespace Master_Mind
 
             Console.WriteLine("Loading...");
 
-            int g = 0;
+            GameData game = new GameData();
 
-            for (int x = 0; x < 100; x++)
+            if (opt == 1)
             {
-                GameData game = new GameData();
+                Random rand = new Random();
 
+                for (int i = 0; i < 4; i++)
+                {
+                    int col = rand.Next(6);
+
+                    game.sequence[i] = col;
+                }
+            }
+            else
+            {
+                game.sequence = Render.GetColorInput();
+            }
+
+            do
+            {
                 if (opt == 1)
                 {
-                    Random rand = new Random();
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        int col = rand.Next(6);
-
-                        game.sequence[i] = col;
-                    }
+                    game.AddRow(Render.GetColorInput());
                 }
                 else
                 {
-                    Console.WriteLine("Please select your colors");
-
-                    return;
+                    game.AddRow(AI.ShittyGuess(game));
                 }
 
-                do
-                {
-                    //game.AddRow(Render.GetColorInput());
-                    game.AddRow(AI.ShittyGuess(game));
+                Console.Clear();
 
-                    Console.Clear();
+                Render.RenderBoard(game, (opt == 2));
 
-                    Render.RenderBoard(game);
-
-                    //Console.ReadLine();
-
-                    g++;
-                } while (game.won == 0);
-            }
-
-            Console.WriteLine(((float)g / 100f).ToString());
+                Console.ReadLine();
+            } while (game.won == 0);
         }
     }
 }

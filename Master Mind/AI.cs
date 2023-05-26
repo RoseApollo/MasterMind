@@ -35,11 +35,11 @@ namespace Master_Mind
         {
             int[] guess = new int[4];
 
+            Random r = new Random();
+
             if (game.go == 0)
             {
                 // RANDOM
-
-                Random r = new Random();
 
                 guess[0] = r.Next(6);
                 guess[1] = r.Next(6);
@@ -51,7 +51,7 @@ namespace Master_Mind
 
             while (!IsThisValidGivenWhatIKnow(game, guess))
             {
-                if (++guess[0] >= 6)
+                /*if (++guess[0] >= 6)
                 {
                     guess[0] = 0;
 
@@ -69,7 +69,12 @@ namespace Master_Mind
                             }
                         }
                     }
-                }
+                }*/
+
+                guess[0] = r.Next(6);
+                guess[1] = r.Next(6);
+                guess[2] = r.Next(6);
+                guess[3] = r.Next(6);
             }
 
             return guess;
@@ -103,17 +108,6 @@ namespace Master_Mind
                         return false;
                 }
             }
-
-            /*for (int x = 0; x < game.go; x++)
-            {
-                int[] gDat = game.ContainsCalcIHateThis(x);
-
-                for (int y = 0; y < 4; y++)
-                {
-                    if (gDat[y] == 0 && (guess.Contains(game.board[x, y])))
-                        return false;
-                }
-            }*/
 
             return true;
         }
